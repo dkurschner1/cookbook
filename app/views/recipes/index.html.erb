@@ -1,0 +1,33 @@
+
+<%= render "/shared/search" %>
+<h1>Listing Recipes</h1>
+
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Calories</th>
+      <th>Last Updated</th>
+      <th colspan="3"></th>
+    </tr>
+
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= link_to recipe.title, recipe %></td>
+        <td><%= recipe.category.name rescue "No Category" %></td>
+        <td><%= recipe.calories %></td>
+        <td><%= time_ago_in_words(recipe.updated_at) %></td>
+
+          <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
+
+          <td><%= button_to 'Destroy', recipe, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+      <% end %>
+</table>
+
+
+  <%= link_to 'New Recipe', new_recipe_path %>
+
+<% if @logged_in %>
+You are currently logged in as <%= current_user.username %>
+<% end %>

@@ -1,0 +1,12 @@
+
+
+<h1><%= @category.name %> </h1>
+
+<table>
+  <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= link_to recipe.title, recipe %></td>
+
+      </tr>
+    <% end %>
+</table>
